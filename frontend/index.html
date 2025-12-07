@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Traffic Sign Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="dark">
+
+<!-- ===== Dark Mode Toggle ===== -->
+<div id="dark-toggle" onclick="toggleTheme()">
+    <div class="circle"></div>
+</div>
+
+<!-- ===== SIDEBAR ===== -->
+<div class="sidebar">
+    <h2>🚦 Traffic AI</h2>
+
+    <ul>
+        <li class="active" onclick="switchTab('upload')">🖼 Upload Ảnh</li>
+        <li onclick="switchTab('realtime')">🎥 Realtime Camera</li>
+        <li onclick="switchTab('history')">📊 Lịch Sử</li>
+        <li onclick="switchTab('settings')">⚙ Cài Đặt</li>
+    </ul>
+</div>
+
+
+<!-- ===== MAIN CONTENT ===== -->
+<div class="content">
+
+    <!-- ---------- TAB UPLOAD ---------- -->
+    <section id="tab-upload" class="tab active">
+        <h1 class="title">🖼 Nhận diện bằng ảnh</h1>
+        <p class="subtitle">Tải hình ảnh biển báo giao thông để hệ thống xử lý</p>
+
+        <div class="card">
+
+            <h2>Tải ảnh lên</h2>
+
+            <div id="upload-box" onclick="triggerInput()">
+                <input type="file" id="upload-input" accept="image/*" onchange="previewImage()">
+                <div id="upload-content">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1829/1829586.png" class="upload-icon">
+                    <p>Nhấn hoặc kéo ảnh vào đây</p>
+                </div>
+                <img id="preview">
+            </div>
+
+            <button id="detect-btn" onclick="sendToAPI()">Nhận Diện</button>
+        </div>
+
+        <div class="result-card">
+            <h2>Kết quả</h2>
+            <p id="result-text">Chưa có dữ liệu</p>
+        </div>
+    </section>
+
+
+    <!-- ---------- TAB REALTIME ---------- -->
+    <section id="tab-realtime" class="tab">
+        <h1 class="title">🎥 Nhận diện Realtime</h1>
+
+        <div class="card">
+            <video id="camera" autoplay playsinline></video>
+
+            <button id="start-btn" onclick="startCamera()">▶ Bật Camera</button>
+            <button id="stop-btn" onclick="stopCamera()">⏹ Tắt Camera</button>
+        </div>
+
+        <div class="result-card">
+            <h2>Kết quả realtime</h2>
+            <p id="live-result">—</p>
+        </div>
+    </section>
+
+
+    <!-- ---------- TAB HISTORY ---------- -->
+    <section id="tab-history" class="tab">
+        <h1 class="title">📊 Lịch sử</h1>
+        <div class="card">
+            <p>Chưa có lịch sử</p>
+        </div>
+    </section>
+
+
+    <!-- ---------- TAB SETTINGS ---------- -->
+    <section id="tab-settings" class="tab">
+        <h1 class="title">⚙ Cài đặt</h1>
+        <div class="card">
+            <p>Các tùy chỉnh sẽ được thêm sau</p>
+        </div>
+    </section>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
